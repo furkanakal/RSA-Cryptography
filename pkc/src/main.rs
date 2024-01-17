@@ -13,3 +13,15 @@ fn mod_inverse(e: u64, phi: u64) -> Option<u64> {
         Some(x0.wrapping_add(phi) % phi)
     }
 }
+
+fn mod_exp(mut base: u64, mut exp: u64, modulus: u64) -> u64 {
+    if modulus == 1 { return 0 }
+    let mut result = 1;
+    base %= modulus;
+    while exp > 0 {
+        if exp % 2 == 1 { result = result * base % modulus }
+        exp >>= 1;
+        base = base * base % modulus;
+    }
+    result
+}
