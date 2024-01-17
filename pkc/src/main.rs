@@ -1,3 +1,20 @@
+fn main() {
+    let p: u64 = 61;
+    let q: u64 = 53;
+    let (n, e, d) = generate_keys(p, q);
+
+    println!("Public Key: (e: {}, n: {})", e, n);
+    println!("Private Key: (d: {}, n: {})", d, n);
+
+    let message = 42;
+    let encrypted = encrypt(message, e, n);
+    let decrypted = decrypt(encrypted, d, n);
+
+    println!("Original message: {}", message);
+    println!("Encrypted message: {}", encrypted);
+    println!("Decrypted message: {}", decrypted);
+}
+
 fn generate_keys(p: u64, q: u64) -> (u64, u64, u64) {
     let n = p * q;
     let phi = (p - 1) * (q - 1);
