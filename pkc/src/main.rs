@@ -25,3 +25,11 @@ fn mod_exp(mut base: u64, mut exp: u64, modulus: u64) -> u64 {
     }
     result
 }
+
+fn encrypt(message: u64, e: u64, n: u64) -> u64 {
+    mod_exp(message, e, n)
+}
+
+fn decrypt(ciphertext: u64, d: u64, n: u64) -> u64 {
+    mod_exp(ciphertext, d, n)
+}
