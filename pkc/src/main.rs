@@ -1,3 +1,12 @@
+fn generate_keys(p: u64, q: u64) -> (u64, u64, u64) {
+    let n = p * q;
+    let phi = (p - 1) * (q - 1);
+    let e = 65537; // Using 65537 as e
+    let d = mod_inverse(e, phi).expect("Modular inverse does not exist.");
+
+    (n, e, d)
+}
+
 fn mod_inverse(e: u64, phi: u64) -> Option<u64> {
     let (mut a, mut b, mut x0, mut x1) = (phi, e, 0u64, 1u64);
 
